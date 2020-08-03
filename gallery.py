@@ -18,7 +18,7 @@ OTHER_FORMATS="""
 SINGLE_FORMAT="""
 	<a href="{file}">[{ext}]</a>"""
 
-SEARCH_BOX="""<p><input type="text" class="quicksearch" placeholder="Regex Search" /></p>"""
+SEARCH_BOX="""<p>Use (.+) as wildcard</p><p><input type="text" class="quicksearch" placeholder="Regex Search" /></p>"""
 
 BUTTON="""<button class="button" data-filter=".{FILTER}">{NAME}</button>"""
 
@@ -41,7 +41,7 @@ def CleanStr(arg):
 parser = argparse.ArgumentParser()
 parser.add_argument('input', help='input directory')
 parser.add_argument('--verbose', '-v', action='store_true', help='print some info to the screen')
-parser.add_argument('--title-size', default='100', help='scale the text size of the plot titles, expressed as a percentage [0-100]')
+parser.add_argument('--title-size', default='50', help='scale the text size of the plot titles, expressed as a percentage [0-100]')
 # parser.add_argument('output', help='output directory')
 args = parser.parse_args()
 
@@ -145,13 +145,11 @@ def ProcessDir(indir, is_parent=True, subdirs=[]):
 	# Do links to other pages
 	links=''
 	if not is_parent or len(subdirs) > 0:
-		links += '<p><strong>Current directory:</strong> %s | <strong>Navigation:</strong> ' % indir
+		links += '<p><strong>Current directory:</strong> %s </p> <p> <strong>Navigation:</strong> ' % indir
 		if not is_parent:
-			links += ' <a href="../index.html">[Up]</a>'
+			links += '<p> <a href="../index.html">[Up]</a> </p>'
 		for i, subdir in enumerate(subdirs):
-			if i != 0: links += ' | '
-			links += ' <a href="{SUBDIR}/index.html">{SUBDIR}</a>'.format(SUBDIR=subdir)
-		links += '</p>'
+			links += '<p> <a href="{SUBDIR}/index.html">{SUBDIR}</a> </p>'.format(SUBDIR=subdir)
 	index = index.replace('{LINKS}', links)
 
 	
