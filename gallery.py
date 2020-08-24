@@ -41,7 +41,7 @@ def CleanStr(arg):
 parser = argparse.ArgumentParser()
 parser.add_argument('input', help='input directory')
 parser.add_argument('--verbose', '-v', action='store_true', help='print some info to the screen')
-parser.add_argument('--title-size', default='50', help='scale the text size of the plot titles, expressed as a percentage [0-100]')
+parser.add_argument('--title-size', default='10', help='scale the text size of the plot titles, expressed as a percentage [0-100]')
 # parser.add_argument('output', help='output directory')
 args = parser.parse_args()
 
